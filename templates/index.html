@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Potato Disease Classifier</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #388e3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2e7d32;
+    }
+
+    .prediction {
+      margin-top: 30px;
+    }
+
+    .prediction h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .image-preview {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Potato Leaf Disease Classifier</h1>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept="image/*" required><br>
+      <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+    <div class="prediction">
+      <h2>Prediction: {{ prediction }}</h2>
+      <img class="image-preview" src="{{ url_for('static', filename='uploads/' + img_path.split('/')[-1]) }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
